@@ -2,6 +2,8 @@ package com.mkyong.core;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mkyong.core.service.OutputGeneratorHelper;
+
 /**
  * Hello world!
  *
@@ -13,7 +15,7 @@ public class App
      	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
 				"SpringBeans.xml");
 
-		HelloWorld obj = (HelloWorld) context.getBean("helloBean");
-		obj.printHello();
+		OutputGeneratorHelper obj = (OutputGeneratorHelper) context.getBean("outputGenerator");
+		obj.generateOutput();
     }
 }
