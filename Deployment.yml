@@ -13,8 +13,8 @@ spec:
         app: utk-springboot
     spec:
       containers:
-        - name: springboot
-          image: utk1311/spring-3-example-docker
+        - name: utk-springboot
+          image: utk1311/spring-3-example-docker:latest
           ports:
             - containerPort: 8089
           env:
