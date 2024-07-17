@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mkyong.core.config.AppConfig;
 import com.mkyong.core.model.CustomerBO;
+import com.mkyong.core.model.CustomerService;
 import com.mkyong.core.model.SchedulerBO;
 import com.mkyong.core.service.OutputGeneratorHelper;
 import com.mkyong.core.serviceImpl.HelloWorldImpl;
@@ -16,8 +17,7 @@ import com.mkyong.core.serviceImpl.HelloWorldImpl;
  */
 public class App {
 	public static void main(String[] args) {
-//     	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-//				"SpringBeans.xml");
+		ApplicationContext contextXml = new ClassPathXmlApplicationContext("SpringBeans.xml");
 //
 //		OutputGeneratorHelper obj = (OutputGeneratorHelper) context.getBean("outputGenerator");
 //		obj.generateOutput();
@@ -31,5 +31,15 @@ public class App {
 
 		SchedulerBO schedulerBO = (SchedulerBO) context.getBean("schedulerConfig");
 		schedulerBO.printMsg();
+
+		CustomerService customerService = (CustomerService) contextXml.getBean("customerServiceBeanProxy");
+		customerService.printName();
+		
+		customerService.printUrl();
+		
+		try {
+			customerService.printMessage();
+		} catch (Exception e) {
+		}
 	}
 }
