@@ -22,14 +22,26 @@
 	<property name="url" value="http://url-utkarsh"></property>
 	</bean>
 	
-	<bean id="adviceBeforeMethod" class= "com.mkyong.core.advice.AdviceBeforeMethod">
+	<!-- <bean id="adviceBeforeMethod" class= "com.mkyong.core.advice.AdviceBeforeMethod">
+	</bean>
+	
+	<bean id="adviceAfterMethod" class= "com.mkyong.core.advice.AdviceAfterMethod">
+	</bean>
+	
+	<bean id="afterThrowingAdvice" class= "com.mkyong.core.advice.AfterThrowingAdvice">
+	</bean> -->
+	
+	<bean id="aroundAdvice" class= "com.mkyong.core.advice.AroundAdvice">
 	</bean>
 	
 	<bean id="customerServiceBeanProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="customerServiceBean"></property>
 		<property name="interceptorNames">
 			<list>
-				<value>adviceBeforeMethod</value>
+			<!-- 	<value>adviceBeforeMethod</value>
+				<value>adviceAfterMethod</value>
+				<value>afterThrowingAdvice</value> -->
+				<value>aroundAdvice</value>
 			</list>
 		</property>
 	</bean>

@@ -1,14 +1,13 @@
 package com.mkyong.core;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mkyong.core.config.AppConfig;
 import com.mkyong.core.model.CustomerBO;
 import com.mkyong.core.model.CustomerService;
 import com.mkyong.core.model.SchedulerBO;
-import com.mkyong.core.service.OutputGeneratorHelper;
 import com.mkyong.core.serviceImpl.HelloWorldImpl;
 
 /**
@@ -17,12 +16,12 @@ import com.mkyong.core.serviceImpl.HelloWorldImpl;
  */
 public class App {
 	public static void main(String[] args) {
-		ApplicationContext contextXml = new ClassPathXmlApplicationContext("SpringBeans.xml");
+		AbstractApplicationContext contextXml = new ClassPathXmlApplicationContext("SpringBeans.xml");
 //
 //		OutputGeneratorHelper obj = (OutputGeneratorHelper) context.getBean("outputGenerator");
 //		obj.generateOutput();
 
-		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 		HelloWorldImpl impl = (HelloWorldImpl) context.getBean("helloWorld");
 		impl.printHelloWorld("The message is printed with the help of annotation config!!!!!!");
 
@@ -41,5 +40,8 @@ public class App {
 			customerService.printMessage();
 		} catch (Exception e) {
 		}
+		
+		contextXml.close();
+		context.close();
 	}
 }
